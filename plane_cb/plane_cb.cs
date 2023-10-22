@@ -9,6 +9,11 @@ public partial class plane_cb : CharacterBody2D
 	private float _power = -400.0f;
 	private float _newVelocityY;
 	private Vector2 _previousVelocity;
+	private StringName _fly = new StringName("fly");
+	private StringName _planeDied = SignalName.OnPlaneDied;
+	
+	[Signal]
+	public delegate void OnPlaneDiedEventHandler();
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -44,15 +49,16 @@ public partial class plane_cb : CharacterBody2D
 	}
 	private void Fly()
 	{
-		if(!Input.IsActionJustPressed("fly"))
+		if(!Input.IsActionJustPressed(_fly))
 			return;
 		_newVelocityY =  _power;
-		_animationPlayer.Play("fly");
+		_animationPlayer.Play(_fly);
 	}
 
 	private void Die()
 	{
 		_sprite.Stop();
+		EmitSignal(_planeDied);
 		SetPhysicsProcess(false);
 	}
 }

@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 public partial class game : Node2D
@@ -37,5 +36,10 @@ public partial class game : Node2D
 	private void OnSpawnTimerTimeout()
 	{
 		SpawnPipes();
+	}
+
+	private void OnPlaneDied()
+	{
+		GetNode<gameManager>("/root/GameManager").LoadMainScene();
 	}
 }
