@@ -61,12 +61,14 @@ script = ExtResource("1_tjwre")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_m2ag2")
-frame_progress = 0.38123
+autoplay = "default"
+frame_progress = 0.99706
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ssuxi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fly"
 libraries = {
 "": SubResource("AnimationLibrary_2ry6u")
 }
