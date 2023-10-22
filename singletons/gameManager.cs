@@ -4,10 +4,9 @@ using System.IO;
 
 public partial class gameManager : Node
 {
-	private  PackedScene _gameScene; 
+	private  PackedScene _gameScene = (PackedScene)ResourceLoader.Load("res://game/game.tscn");
 	public void LoadGameScene()
 	{
-		_gameScene = (PackedScene)ResourceLoader.Load("res://game/game.tscn");
 		GetTree().ChangeSceneToPacked(_gameScene);
 	}
 }

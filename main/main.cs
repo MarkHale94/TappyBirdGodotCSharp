@@ -11,7 +11,6 @@ public partial class main : Control
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		//var bob = GetTree();
 		if (Input.IsActionJustPressed("fly"))
 			GetNode<gameManager>("/root/GameManager").LoadGameScene();
 	}
