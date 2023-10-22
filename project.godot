@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="TappyBirdGodotCSharp"
+run/main_scene="res://game/game.tscn"
 config/features=PackedStringArray("4.1", "C#", "Mobile")
 
 [display]

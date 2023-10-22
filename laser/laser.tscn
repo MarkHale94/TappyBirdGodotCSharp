@@ -3,7 +3,22 @@
 [ext_resource type="Texture2D" uid="uid://cvniy1wvjfayh" path="res://assets/pipes/laser2.png" id="1_wyh64"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_whu24"]
-size = Vector2(7, 190)
+size = Vector2(11.25, 190)
+
+[sub_resource type="Animation" id="Animation_qfgjb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_6pubd"]
 resource_name = "flash"
@@ -22,21 +37,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_qfgjb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6tt8d"]
 _data = {
 "RESET": SubResource("Animation_qfgjb"),
@@ -50,7 +50,7 @@ scale = Vector2(1, 8)
 texture = ExtResource("1_wyh64")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(45.5, 0)
+position = Vector2(54.625, 1)
 shape = SubResource("RectangleShape2D_whu24")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
