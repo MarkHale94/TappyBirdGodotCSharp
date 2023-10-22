@@ -1,3 +1,16 @@
-[gd_scene format=3 uid="uid://ctxahaa47woao"]
+[gd_scene load_steps=3 format=3 uid="uid://ctxahaa47woao"]
+
+[ext_resource type="Texture2D" uid="uid://d23xuw1ivrkp7" path="res://assets/background/rocks_2.png" id="1_83upg"]
+[ext_resource type="PackedScene" uid="uid://cvy4jkw2a1p0g" path="res://plane_cb/plane_cb.tscn" id="2_mvstw"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.015662
+
+[node name="Rocks2" type="Sprite2D" parent="."]
+position = Vector2(200, 312)
+texture = ExtResource("1_83upg")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_mvstw")]
+position = Vector2(76, 438)
