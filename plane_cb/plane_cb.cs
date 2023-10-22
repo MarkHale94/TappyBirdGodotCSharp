@@ -4,6 +4,7 @@ using System;
 public partial class plane_cb : CharacterBody2D
 {
 	private AnimationPlayer _animationPlayer;
+	private AnimatedSprite2D _sprite;
 	private float _gravity = 1900.0f;
 	private float _power = -400.0f;
 	private float _newVelocityY;
@@ -13,6 +14,7 @@ public partial class plane_cb : CharacterBody2D
 	public override void _Ready()
 	{
 		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,7 +28,8 @@ public partial class plane_cb : CharacterBody2D
 		CalculateVelocityY(delta);
 		Velocity = new Vector2(_previousVelocity.X, _newVelocityY);
 		MoveAndSlide();
-
+		if (IsOnFloor())
+			Die();
 	}
 
 	private void CalculateVelocityY(double delta)
@@ -45,6 +48,12 @@ public partial class plane_cb : CharacterBody2D
 			return;
 		_newVelocityY =  _power;
 		_animationPlayer.Play("fly");
+	}
+
+	private void Die()
+	{
+		_sprite.Stop();
+		SetPhysicsProcess(false);
 	}
 }
 
