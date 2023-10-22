@@ -3,10 +3,12 @@ using System;
 
 public partial class plane_cb : CharacterBody2D
 {
+	private AnimationPlayer _animationPlayer;
 	private float _gravity = 1900.0f;
 	private float _power = -400.0f;
-	private AnimationPlayer _animationPlayer;
+	private float _newVelocityY;
 	private Vector2 _previousVelocity;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -20,14 +22,29 @@ public partial class plane_cb : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		bool isFlyPressed = Input.IsActionJustPressed("fly");
 		_previousVelocity = Velocity;
-		var newVelocityY = isFlyPressed ? _power : (_previousVelocity.Y + _gravity * (float)delta);
-		if( isFlyPressed )
-			_animationPlayer.Play("fly");
-		Velocity = new Vector2(_previousVelocity.X, newVelocityY);
+		CalculateVelocityY(delta);
+		Velocity = new Vector2(_previousVelocity.X, _newVelocityY);
 		MoveAndSlide();
 
+	}
+
+	private void CalculateVelocityY(double delta)
+	{
+		Gravity(delta);
+		Fly();
+	}
+
+	private void Gravity(double delta)
+	{
+		_newVelocityY =  _previousVelocity.Y + _gravity * (float)delta;
+	}
+	private void Fly()
+	{
+		if(!Input.IsActionJustPressed("fly"))
+			return;
+		_newVelocityY =  _power;
+		_animationPlayer.Play("fly");
 	}
 }
 
