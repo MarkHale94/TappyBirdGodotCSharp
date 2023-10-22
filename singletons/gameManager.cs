@@ -6,6 +6,9 @@ public partial class gameManager : Node
 {
 	private  PackedScene _gameScene = (PackedScene)ResourceLoader.Load("res://game/game.tscn");
 	private PackedScene _mainScene = (PackedScene) ResourceLoader.Load("res://main/main.tscn");
+
+	[Signal]
+	public delegate void OnGameOverEventHandler();
 	public void LoadGameScene()
 	{
 		GetTree().ChangeSceneToPacked(_gameScene);

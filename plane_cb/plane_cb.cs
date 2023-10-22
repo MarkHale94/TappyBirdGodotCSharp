@@ -9,17 +9,20 @@ public partial class plane_cb : CharacterBody2D
 	private float _power = -400.0f;
 	private float _newVelocityY;
 	private Vector2 _previousVelocity;
-	private StringName _fly = new StringName("fly");
-	private StringName _planeDied = SignalName.OnPlaneDied;
+	private StringName _fly = "fly";
+	private gameManager _gameManager;
+	private StringName _gameOver = gameManager.SignalName.OnGameOver;
+	//private StringName _planeDied = SignalName.OnPlaneDied;
 	
-	[Signal]
-	public delegate void OnPlaneDiedEventHandler();
+	// [Signal]
+	// public delegate void OnPlaneDiedEventHandler();
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		_gameManager = GetNode<gameManager>("/root/GameManager");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -58,7 +61,7 @@ public partial class plane_cb : CharacterBody2D
 	private void Die()
 	{
 		_sprite.Stop();
-		EmitSignal(_planeDied);
+		_gameManager.EmitSignal(_gameOver);
 		SetPhysicsProcess(false);
 	}
 }

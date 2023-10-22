@@ -8,6 +8,8 @@ public partial class game : Node2D
 	private Marker2D _spawnLower;
 	private Timer _spawnTimer;
 	private RandomNumberGenerator _rng;
+	private gameManager _gameManager;
+	private StringName _gameOver = gameManager.SignalName.OnGameOver;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -17,6 +19,10 @@ public partial class game : Node2D
 		_spawnTimer = GetNode<Timer>("SpawnTimer");
 		_pipesHolder = GetNode<Node2D>("PipesHolder");
 		_rng = new RandomNumberGenerator();
+		_gameManager = GetNode<gameManager>("/root/GameManager");
+		//_gameManager.OnGameOver += OnGameOver;
+		// See comments in game_over.cs for info on why we have to connect to Signals this way through code
+		_gameManager.Connect(_gameOver, new Callable(this, _gameOver));
 		SpawnPipes();
 	}
 
@@ -38,8 +44,9 @@ public partial class game : Node2D
 		SpawnPipes();
 	}
 
-	private void OnPlaneDied()
+	private void OnGameOver()
 	{
-		GetNode<gameManager>("/root/GameManager").LoadMainScene();
 	}
+	
+	
 }
