@@ -44,7 +44,9 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Press Space"
+text = "Press Space
+To Return
+To Main Menu"
 label_settings = ExtResource("1_e3e25")
 horizontal_alignment = 1
 vertical_alignment = 1
