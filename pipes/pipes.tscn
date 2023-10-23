@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwkd4hol8fkqm"]
+[gd_scene load_steps=6 format=3 uid="uid://dwkd4hol8fkqm"]
 
 [ext_resource type="Script" path="res://pipes/pipes.cs" id="1_8vd15"]
 [ext_resource type="PackedScene" uid="uid://cuoi0bbmnpjq" path="res://laser/laser.tscn" id="1_v5xx3"]
 [ext_resource type="PackedScene" uid="uid://bm6txd5mba68t" path="res://pipe/pipe.tscn" id="2_gv1l0"]
+[ext_resource type="Texture2D" uid="uid://cpdua0u75x55i" path="res://assets/pipes/pipe.png" id="4_vl67g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7xg3"]
+size = Vector2(68, 596)
 
 [node name="pipes" type="Node2D"]
 script = ExtResource("1_8vd15")
@@ -10,14 +14,27 @@ script = ExtResource("1_8vd15")
 [node name="Laser" parent="." instance=ExtResource("1_v5xx3")]
 position = Vector2(0, 2)
 
-[node name="Upper" parent="." instance=ExtResource("2_gv1l0")]
-position = Vector2(0, -80)
-rotation = 3.14159
-
 [node name="Lower" parent="." instance=ExtResource("2_gv1l0")]
 position = Vector2(0, 80)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(79, -1)
 
+[node name="Upper" parent="." instance=ExtResource("2_gv1l0")]
+position = Vector2(0, -80)
+rotation = 3.14159
+
+[node name="Sprite2D2" type="Sprite2D" parent="Upper"]
+position = Vector2(0, 1)
+rotation = 6.28319
+texture = ExtResource("4_vl67g")
+centered = false
+offset = Vector2(-35, 0)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Upper"]
+position = Vector2(0, 333)
+shape = SubResource("RectangleShape2D_j7xg3")
+
+[connection signal="body_entered" from="Lower" to="." method="OnPipeBodyEntered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnScreenExited"]
+[connection signal="body_entered" from="Upper" to="." method="OnPipeBodyEntered"]

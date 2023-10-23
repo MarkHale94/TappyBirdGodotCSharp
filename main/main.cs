@@ -3,7 +3,7 @@ using System;
 
 public partial class main : Control
 {
-	private StringName _fly = new StringName("fly");
+	private StringName _fly ="fly";
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

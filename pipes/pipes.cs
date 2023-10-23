@@ -5,10 +5,14 @@ public partial class pipes : Node2D
 {
 	private Vector2 _previousPosition;
 	private float _scrollSpeed = 120.0f;
+	private gameManager _gameManager;
+	private StringName _planeCollision = gameManager.SignalName.OnPlaneCollision;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		_gameManager = GetNode<gameManager>("/root/GameManager");
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,6 +26,14 @@ public partial class pipes : Node2D
 	private void OnScreenExited()
 	{
 		QueueFree();
+	}
+
+	private void OnPipeBodyEntered(Node2D body)
+	{
+		if (body.IsInGroup(_gameManager.groupPlane))
+		{
+			_gameManager.EmitSignal(_planeCollision);
+		}
 	}
 
 }

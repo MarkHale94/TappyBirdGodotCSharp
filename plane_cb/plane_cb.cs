@@ -12,6 +12,9 @@ public partial class plane_cb : CharacterBody2D
 	private StringName _fly = "fly";
 	private gameManager _gameManager;
 	private StringName _gameOver = gameManager.SignalName.OnGameOver;
+	private bool _dead;
+
+	private StringName _planeCollision = gameManager.SignalName.OnPlaneCollision;
 	//private StringName _planeDied = SignalName.OnPlaneDied;
 	
 	// [Signal]
@@ -23,6 +26,7 @@ public partial class plane_cb : CharacterBody2D
 		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		_gameManager = GetNode<gameManager>("/root/GameManager");
+		_gameManager.Connect(_planeCollision, new Callable(this,_planeCollision));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -58,8 +62,16 @@ public partial class plane_cb : CharacterBody2D
 		_animationPlayer.Play(_fly);
 	}
 
+	private void OnPlaneCollision()
+	{
+		Die();
+	}
+
 	private void Die()
 	{
+		if (_dead)
+			return;
+		_dead = true;
 		_sprite.Stop();
 		_gameManager.EmitSignal(_gameOver);
 		SetPhysicsProcess(false);
