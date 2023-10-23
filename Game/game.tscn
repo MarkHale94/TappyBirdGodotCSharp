@@ -29,6 +29,8 @@ position = Vector2(76, 438)
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(0, 836)
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 position = Vector2(239.5, 0)

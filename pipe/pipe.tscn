@@ -6,6 +6,7 @@
 size = Vector2(68, 596)
 
 [node name="Pipe" type="Area2D"]
+collision_layer = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 1)

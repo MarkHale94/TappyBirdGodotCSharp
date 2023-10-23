@@ -39,7 +39,6 @@ public partial class gameManager : Node
 		_score = score;
 		CompareScoreToHighScore();
 		EmitSignal(_scoreUpdated);
-		GD.Print($"Score: {_score}. HighScore: {_highScore}");
 	}
 
 	public void IncrementScore()

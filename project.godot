@@ -36,6 +36,13 @@ fly={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="Plane"
+2d_render/layer_2="Pipe"
+2d_render/layer_3="Lazer"
+2d_render/layer_4="Ground"
+
 [rendering]
 
 renderer/rendering_method="mobile"

@@ -17,8 +17,6 @@ public partial class hud : Control
 
 	private void OnScoreUpdated()
 	{
-		var newText = _gameManager.GetScore().ToString();
-		_scoreLabel.Text = newText;
-		GD.Print($"newText: {newText}");
+		_scoreLabel.Text = _gameManager.GetScore().ToString();
 	}
 }
