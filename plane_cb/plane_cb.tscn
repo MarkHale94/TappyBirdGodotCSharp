@@ -33,7 +33,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ssuxi"]
-radius = 39.0
+radius = 34.0588
 
 [sub_resource type="Animation" id="Animation_s5a1k"]
 resource_name = "fly"

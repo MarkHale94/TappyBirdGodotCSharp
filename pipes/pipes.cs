@@ -7,12 +7,14 @@ public partial class pipes : Node2D
 	private float _scrollSpeed = 120.0f;
 	private gameManager _gameManager;
 	private StringName _planeCollision = gameManager.SignalName.OnPlaneCollision;
+	private AudioStreamPlayer _scoreSound;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_gameManager = GetNode<gameManager>("/root/GameManager");
-		
+		_scoreSound = GetNode<AudioStreamPlayer>("ScoreSound");
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,6 +36,17 @@ public partial class pipes : Node2D
 		{
 			_gameManager.EmitSignal(_planeCollision);
 		}
+	}
+
+	private void OnLaserBodyEntered(Node2D body)
+	{
+		PlayerScore();
+	}
+
+	private void PlayerScore()
+	{
+		_scoreSound.Play();
+		_gameManager.IncrementScore();
 	}
 
 }
