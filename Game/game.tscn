@@ -1,30 +1,30 @@
 [gd_scene load_steps=11 format=3 uid="uid://ctxahaa47woao"]
 
-[ext_resource type="Texture2D" uid="uid://d23xuw1ivrkp7" path="res://assets/background/rocks_2.png" id="1_83upg"]
-[ext_resource type="Script" path="res://game/game.cs" id="1_mmsfe"]
-[ext_resource type="PackedScene" uid="uid://dwkd4hol8fkqm" path="res://pipes/pipes.tscn" id="2_3e0yt"]
-[ext_resource type="PackedScene" uid="uid://cvy4jkw2a1p0g" path="res://plane_cb/plane_cb.tscn" id="2_mvstw"]
-[ext_resource type="PackedScene" uid="uid://pk6o55reyu7x" path="res://scrollingbg/scrolling_bg.tscn" id="3_x7m5l"]
-[ext_resource type="PackedScene" uid="uid://lxe6wjs6yt76" path="res://gameover/game_over.tscn" id="5_umhig"]
-[ext_resource type="PackedScene" uid="uid://ce5ue4c0qeji7" path="res://hud/hud.tscn" id="6_5hcla"]
-[ext_resource type="AudioStream" uid="uid://crs7ou8w8b76m" path="res://assets/audio/engine.mp3" id="6_ab2fw"]
-[ext_resource type="AudioStream" uid="uid://8ptrvyjfhq3e" path="res://assets/audio/game_over.wav" id="7_o1626"]
+[ext_resource type="Script" path="res://game/game.cs" id="1_10wne"]
+[ext_resource type="PackedScene" uid="uid://dwkd4hol8fkqm" path="res://pipes/pipes.tscn" id="2_r8kn4"]
+[ext_resource type="PackedScene" uid="uid://pk6o55reyu7x" path="res://scrollingbg/scrolling_bg.tscn" id="3_qnqpv"]
+[ext_resource type="Texture2D" uid="uid://d23xuw1ivrkp7" path="res://assets/background/rocks_2.png" id="4_jy166"]
+[ext_resource type="PackedScene" uid="uid://cvy4jkw2a1p0g" path="res://plane_cb/plane_cb.tscn" id="5_xhy1m"]
+[ext_resource type="PackedScene" uid="uid://lxe6wjs6yt76" path="res://gameover/game_over.tscn" id="6_rhgc7"]
+[ext_resource type="PackedScene" uid="uid://ce5ue4c0qeji7" path="res://hud/hud.tscn" id="7_7bjgh"]
+[ext_resource type="AudioStream" uid="uid://crs7ou8w8b76m" path="res://assets/audio/engine.mp3" id="8_k621k"]
+[ext_resource type="AudioStream" uid="uid://8ptrvyjfhq3e" path="res://assets/audio/game_over.wav" id="9_vhxdc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmkvj"]
 size = Vector2(529, 20)
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_mmsfe")
-_pipesScene = ExtResource("2_3e0yt")
+script = ExtResource("1_10wne")
+_pipesScene = ExtResource("2_r8kn4")
 
-[node name="ScrollingBg" parent="." instance=ExtResource("3_x7m5l")]
+[node name="ScrollingBg" parent="." instance=ExtResource("3_qnqpv")]
 
 [node name="Background" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(200, 314)
-texture = ExtResource("1_83upg")
+texture = ExtResource("4_jy166")
 
-[node name="PlaneCB" parent="." instance=ExtResource("2_mvstw")]
+[node name="PlaneCB" parent="." instance=ExtResource("5_xhy1m")]
 position = Vector2(76, 438)
 
 [node name="Ground" type="StaticBody2D" parent="."]
@@ -50,16 +50,16 @@ autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="GameOver" parent="CanvasLayer" instance=ExtResource("5_umhig")]
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("6_rhgc7")]
 visible = false
 
-[node name="Hud" parent="CanvasLayer" instance=ExtResource("6_5hcla")]
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("7_7bjgh")]
 
 [node name="EngineSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_ab2fw")
+stream = ExtResource("8_k621k")
 autoplay = true
 
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_o1626")
+stream = ExtResource("9_vhxdc")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="OnSpawnTimerTimeout"]
