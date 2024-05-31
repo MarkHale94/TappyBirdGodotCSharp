@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using GodotPlugins.Game;
 
 public partial class game_over : Control
 {
@@ -34,7 +35,7 @@ public partial class game_over : Control
 	public override void _Process(double delta)
 	{
 		if(_canPressSpace && Input.IsActionJustPressed(_fly))
-			_gameManager.LoadMainScene();
+			_gameManager.LoadScene(gameManager.GameScenes.MainScene);
 	}
 
 	private void OnGameOver()

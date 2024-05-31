@@ -6,10 +6,16 @@ public partial class gameManager : Node
 {
 	private  PackedScene _gameScene = (PackedScene)ResourceLoader.Load("res://game/game.tscn");
 	private PackedScene _mainScene = (PackedScene) ResourceLoader.Load("res://main/main.tscn");
+	private PackedScene _sceneToLoad;
 	public string groupPlane = "plane";
 	private int _score;
 	private int _highScore;
 	private StringName _scoreUpdated = SignalName.OnScoreUpdated;
+	public enum GameScenes
+	{
+		GameScene,
+		MainScene
+	}
 
 	[Signal]
 	public delegate void OnGameOverEventHandler();
@@ -19,14 +25,24 @@ public partial class gameManager : Node
 
 	[Signal]
 	public delegate void OnScoreUpdatedEventHandler();
-	public void LoadGameScene()
-	{
-		GetTree().ChangeSceneToPacked(_gameScene);
-	}
 
-	public void LoadMainScene()
+	public void LoadScene(GameScenes scene)
 	{
-		GetTree().ChangeSceneToPacked(_mainScene);
+		switch (scene)
+		{
+			case GameScenes.GameScene:
+				_sceneToLoad = _gameScene;
+				break;
+			case GameScenes.MainScene:
+				_sceneToLoad = _mainScene;
+				break;
+			default:
+				_sceneToLoad = _mainScene;
+				break;
+		}
+
+		GetTree().ChangeSceneToPacked(_sceneToLoad);
+
 	}
 
 	public int GetScore()

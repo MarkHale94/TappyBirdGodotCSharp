@@ -20,6 +20,6 @@ public partial class main : Control
 	public override void _Process(double delta)
 	{
 		if (Input.IsActionJustPressed(_fly))
-			GetNode<gameManager>("/root/GameManager").LoadGameScene();
+			GetNode<gameManager>("/root/GameManager").LoadScene(gameManager.GameScenes.GameScene);
 	}
 }
