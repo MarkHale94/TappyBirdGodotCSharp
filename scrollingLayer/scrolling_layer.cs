@@ -1,6 +1,4 @@
 using Godot;
-using System;
-
 public partial class scrolling_layer : ParallaxLayer
 {
 	private Sprite2D _sprite;

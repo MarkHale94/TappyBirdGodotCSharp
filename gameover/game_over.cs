@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using GodotPlugins.Game;
 
 public partial class game_over : Control
 {

@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class plane_cb : CharacterBody2D
 {
